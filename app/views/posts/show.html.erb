@@ -1,0 +1,30 @@
+<% if @post.url %>
+  <h1><%= link_to "#{@post.title}", @post.url %></h1>
+<% else %>
+  <h1><%= @post.title %></h1>
+<% end %>
+
+<section>
+  <b>Content:</b>
+  <p>
+    <%= @post.content %>
+  </p>
+</section>
+
+<section>
+  <b>Subs</b>
+    <ul>
+      <% @post.subs.each do |sub| %>
+      <li><%= link_to "#{sub.title}", sub_url(sub) %></li>
+      <% end %>
+    </ul>
+</section>
+
+<h2>Comments</h2>
+<%= link_to "Comment on this post!", new_post_comment_url(@post) %>
+
+<ul>
+  <%= render @comments %>
+</ul>
+
+<%= link_to "Edit Post", edit_post_url %>

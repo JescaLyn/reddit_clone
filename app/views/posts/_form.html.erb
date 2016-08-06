@@ -1,0 +1,35 @@
+<% action = post.persisted? ? post_url(post) : posts_url %>
+<% method = post.persisted? ? "patch" : "post" %>
+
+<form action="<%=action%>" method="post">
+  <input type="hidden" name="_method" value="<%=method%>">
+  <%= auth_token %>
+
+  <p>
+    <label>Title:
+      <input type="text" name="post[title]" value="<%= post.title %>">
+    </label>
+  </p>
+
+  <p>
+    <label>URL:
+      <input type="text" name="post[url]" value="<%= post.url %>">
+    </label>
+  </p>
+
+  <p>
+    <label>Content:
+      <textarea name="post[content]" rows="8" cols="40"><%= post.content %></textarea>
+    </label>
+  </p>
+
+  <p>
+    <label>Sub:
+      <%Sub.all.each do |sub| %>
+        <input type="checkbox" name="post[sub_ids][]" value="<%=sub.id%>" <%= post.subs.include?(sub) ? "checked" : "" %>> <%= sub.title %>
+      <% end %>
+    </label>
+  </p>
+
+  <input type="submit" name="submit">
+</form>

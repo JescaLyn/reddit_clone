@@ -1,0 +1,14 @@
+<h1><%= @sub.title %></h1>
+
+<section>
+  <b>Description</b>
+  <p>
+    <%= @sub.description %>
+  </p>
+</section>
+
+<%= link_to "Make New Post!", new_post_url %>
+
+<ul>
+  <%= render @posts %>
+</ul>

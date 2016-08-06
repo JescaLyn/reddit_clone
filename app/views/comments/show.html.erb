@@ -1,0 +1,15 @@
+<h2>Reply:</h2>
+
+<form action="<%=post_comments_url(@comment.post)%>" method="post">
+  <%= auth_token %>
+
+  <input type="hidden" name="comment[parent_comment_id]" value="<%= @comment.id %>">
+
+  <input type="hidden" name="comment[post_id]" value="<%= @comment.post.id %>">
+
+  <label>Body
+    <textarea name="comment[content]" rows="8" cols="40"></textarea>
+  </label>
+
+  <input type="submit" name="Submit">
+</form>

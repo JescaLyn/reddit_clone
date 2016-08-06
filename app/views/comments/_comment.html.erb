@@ -1,0 +1,10 @@
+<li>
+  <%= link_to "#{comment.content}", post_comment_url(comment.post, comment) %>
+</li>
+
+<% unless comment.child_comments.empty? %>
+  <% comments = comment.child_comments %>
+  <ul>
+    <%= render comments %>
+  </ul>
+<% end %>
